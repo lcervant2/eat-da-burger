@@ -1,0 +1,74 @@
+{{!-- these index and product.handlebars pages will be loaded into the spot saved in {{{body}}} in our layouts/main.handlebars file --}}
+<h1>Here are some burgers</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="/assets/img/hamburger.png" alt="hamburger" class="img-responsive center-block">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center text-danger">Eat-Da-Burger</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <h3>Uneaten Burgers</h3>
+            <ul>
+                {{#each burgers}}
+                    {{#unless this.devoured}}
+                        <li>
+                            <h5>{{this.id}}. {{this.burger_name}}
+                                <form action='burgers/updateOne/{{this.id}}?_method=PUT' method='POST'>
+                                    <input type='hidden' name='devoured' value='true'>
+                                    <button type='submit' class="btn btn-default">EAT THIS!</button>
+                                </form>
+                            </h5>
+                        </li>
+                    {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <h3 class="text-muted">Eaten Burgers</h3>
+            <ul>
+                {{#each burgers}}
+                    {{#if this.devoured}}
+                        <li>
+                            <h5 class="text-muted">{{this.id}}. {{this.burger_name}}</h5>
+                        </li>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <form class="create-update-form" action="burgers/insertOne" method="POST">
+                <div class="form-group">
+                    <textarea type="text" name="name"></textarea><br>
+                    <button class="btn btn-default" type="submit">Submit</button>
+                    <h5 class="text-center">Enter a burger you want to eat and click Submit!</h5>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{{!-- have a left side and a right side
+if the burger is not eaten show it on the left side
+if the burger is eaten show it on the right side --}}
+
+{{!-- //if the button is clicked change to devoured (update route/controller)
+
+//if create burger is clicked, then (add new burger route/controller); --}}
+
+
+
+
+
+{{!-- here is how we can create a link to other routes --}}
+<a href="/products">Click here to go to products page</a>

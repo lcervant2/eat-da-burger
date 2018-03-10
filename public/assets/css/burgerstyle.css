@@ -1,0 +1,22 @@
+/* this css page will be loaded for every page so we can put all of our css here for this homework */
+body {
+    background-color: lightgreen;
+    margin-top: 20px;
+}
+
+img {
+    width: 200px;
+    height: auto;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    background-color: dodgerblue;
+    color: tan;
+    font-family: arial;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
