@@ -1,5 +1,5 @@
 // require our modules
-
+var PORT = process.env.Port || 3000
 var express = require('express');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
