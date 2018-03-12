@@ -25,32 +25,39 @@ var router = express.Router();
 // router.get("/davidkanwisher", function(req, res){
 //     res.send("The best tutor ever");
 // });
+router.get('/', function(req, res) {
+    res.redirect('/burgers');
+})
 
 router.get('/burgers', function(req, res) {
     function cbController(burgerInfo){
-        console.log(burgerInfo);
         res.render("index", {burgers: burgerInfo});
     }
     burger.selectAll(cbController);
 })
 
-router.post('/burger/add', function(req, res) {
-    orm.insertOne(req.body.burger_name, req.body.devoured, function(err, result) {
-        if (err) {
-            console.log(err)
-            return res.send(err)
-        }
-
-        return res.json({status: 200})
-    })
+router.post('/burgers/newOne/:burger_name', function(req, res) {
+    var burgerName = req.params.burger_name;
+    function cbController(burgerInfo){
+        console.log(burgerInfo);
+        res.sendStatus(200);
+    }
+    burger.newOne(burgerName, cbController);
 })
 
-router.post('/burger/:id/update', function(req, res) {
-    orm.updateOne(req.params.id, req.body, function(err, result) {
-        if (err) return res.json(err)
-        console.log(result)
-        return res.send('updating')
-    })
+router.put('/burgers/updateOne/:burger_id', function(req, res) {
+    var burgerID = req.params.burger_id;
+    function cbController(burgerInfo){
+        res.sendStatus(200);
+    }
+    burger.updateOne(burgerID, cbController);
+})
+
+router.get('/burgers/reset', function(req, res) {
+    function cbController(burgerInfo){
+        res.sendStatus(200);
+    }
+    burger.resetAll(cbController);
 })
 
 module.exports = router; //if we are going to require something later (like in our server.js file) we must export what we want to include in other files

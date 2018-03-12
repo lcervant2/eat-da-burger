@@ -1,5 +1,6 @@
 // require our modules
 var PORT = process.env.Port || 3000
+var methodOverride = require('method-override')
 var express = require('express');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
@@ -9,6 +10,9 @@ var app = express();
 
 // create our port number and save it to a variable
 var port = 3000;
+
+//allows us to use a PUT request in our button api call
+app.use(methodOverride('_method'))
 
 // use our public folder as a static folder to make our assets available
 app.use(express.static("public"));

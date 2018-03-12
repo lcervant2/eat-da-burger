@@ -9,16 +9,25 @@ var burger = {
     orm.selectAll("burgers", cbModel)
   },
 
-  insertOne: function(burger_name, callback){
-    orm.insertOne(burger_name, function(res){
-      callback(res);
-    });
+  newOne: function(burger_name, callback){
+    function cbModel(burgerInfo){
+      callback(burgerInfo);
+    }
+    orm.newOne(burger_name, "burgers", "burger_name", cbModel);
   },
 
   updateOne: function(burger_id, callback){
-    orm.updateOne(burger_id, function(res){
-      callback(res);
-    });
+    function cbModel(burgerInfo){
+      callback(burgerInfo);
+    }
+    orm.updateOne(burger_id, "burgers", "devoured", cbModel);
+  },
+
+  resetAll: function(callback){
+    function cbModel(info){
+      callback(info);
+    }
+    orm.resetAll("burgers", "devoured", cbModel);
   }
 
 };

@@ -19,10 +19,10 @@
                     {{#unless this.devoured}}
                         <li>
                             <h5>{{this.id}}. {{this.burger_name}}
-                                <form action='burgers/updateOne/{{this.id}}?_method=PUT' method='POST'>
-                                    <input type='hidden' name='devoured' value='true'>
-                                    <button type='submit' class="btn btn-default">EAT THIS!</button>
-                                </form>
+                                    <div>
+                                        <button type='submit' id={{this.id}} class="btn btn-default eat-btn">EAT THIS!</button>
+                                    </div>
+                                    
                             </h5>
                         </li>
                     {{/unless}}
@@ -48,8 +48,9 @@
         <div class="col-md-12 text-center">
             <form class="create-update-form" action="burgers/insertOne" method="POST">
                 <div class="form-group">
-                    <textarea type="text" name="name"></textarea><br>
-                    <button class="btn btn-default" type="submit">Submit</button>
+                    <textarea id="burger-input" type="text" name="name"></textarea><br>
+                    <button id="new-burger-btn" class="btn btn-default" type="submit">Submit</button>
+                    <button id="reset-btn" class="btn btn-default">Reset all burgers</button>
                     <h5 class="text-center">Enter a burger you want to eat and click Submit!</h5>
                 </div>
             </form>

@@ -12,38 +12,31 @@ var orm = {
 			cb(result)
 		})
 	},
-	insertOne: function(burger_name = '', devoured = false, cb = null) {
-		if (!burger_name.length) {
-			if (cb) cb({message: 'Please give me a burger name'})
-			return
-		}
+	newOne: function(name, tablename, columnname,  cb) {
+		console.log(arguments);
+		var query = `INSERT INTO ${tablename} (${columnname}) VALUES ('${name}');`
 
-		var query = `INSERT INTO burgers (burger_name, devoured) VALUES ('${burger_name}', ${devoured})`
-		connection.query(query, function(err) {
-			if (err) {
-				console.log(err)
-				return cb(err)
-			}
-
-			if (cb) return cb(null)
+		connection.query(query, function(err, result) {
+			if(err) return cb(err)
+			return cb(result);
 		})
 	},
-	updateOne: function(id, fields = {}, cb) {
-		let setQuery = ''
-		if (!Object.keys(fields).length || !id) {
-			console.log('missing id and fields', id, fields)
-			return cb(false)
-		}
+	updateOne: function(id, tablename, column, cb) {
 
-		Object.keys(fields).forEach(function(field) {
-			if (field === 'burger_name' || field === 'devoured') setQuery += `${field}=${fields[field]}`
-		})
-
-		var query = `UPDATE burgers SET ${setQuery} WHERE id=${id}`
+		var query = `UPDATE ${tablename} SET ${column} = 1 WHERE id=${id}`
 
 		connection.query(query, function(err, result) {
 			if (err) return cb(err)
 			return cb(result)
+		})
+	},
+
+	resetAll: function(tablename, columnname, cb){
+		var query = `UPDATE ${tablename} SET ${columnname} = 0`
+
+		connection.query(query, function(err, result) {
+			if(err) return cb(err)
+			return cb(result);
 		})
 	}
 }
