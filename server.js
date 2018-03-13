@@ -32,7 +32,7 @@ app.use(routes);
 
 //start our server on our port and send a message when successful
 app.listen(PORT, function(){
-    console.log("your app is running at http://localhost:" + port);;
+    console.log("your app is running at http://localhost:" + PORT);;
 });
 
 
