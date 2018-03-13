@@ -1,5 +1,5 @@
 // require our modules
-var PORT = process.env.Port || 3000
+var PORT = process.env.PORT || 3000
 var methodOverride = require('method-override')
 var express = require('express');
 var bodyParser = require('body-parser');
