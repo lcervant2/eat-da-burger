@@ -8,8 +8,6 @@ var exphbs  = require('express-handlebars');
 // create our server instance
 var app = express();
 
-// create our port number and save it to a variable
-var port = 3000;
 
 //allows us to use a PUT request in our button api call
 app.use(methodOverride('_method'))
@@ -33,7 +31,7 @@ app.use(routes);
 
 
 //start our server on our port and send a message when successful
-app.listen(port, function(){
+app.listen(PORT, function(){
     console.log("your app is running at http://localhost:" + port);;
 });
 
